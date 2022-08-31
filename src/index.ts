@@ -9,6 +9,7 @@ const SlidesCont:HTMLDivElement = document.querySelector(".slides");
 const slides:Slide[] = [];
 const slidesElements: HTMLDivElement[] = createSlides(data);
 
+let currentSlide = 0;
 
 appendSlides(slidesElements);
 
@@ -17,6 +18,7 @@ appendSlides(slidesElements);
 function createSlides(data:Data[]):HTMLDivElement[] {
  
   const res:HTMLDivElement[] = []
+  SlidesCont.style.width = `${ 100 * data.length + 100 * (data.length - 1)}vw`
 
   data.forEach((elem, index) => {
     const slide:Slide = {
@@ -27,7 +29,8 @@ function createSlides(data:Data[]):HTMLDivElement[] {
       dir: elem.dir,
       type: elem.type,
       industry: elem.industry,
-      translate: `${index * 100}% - ${index * 100}vw`
+      translate: `calc(${-index * 100}vw - ${index * 100}vw)`,
+      color: elem.color,
     };
     
     
@@ -61,10 +64,16 @@ function createSlides(data:Data[]):HTMLDivElement[] {
 
     const buttonL = document.createElement("button");
     buttonL.classList.add("slide__pagination-button", "left");
+    if (index === 0){
+      buttonL.disabled = true;
+    }
     slidePag.appendChild(buttonL);
 
     const buttonR = document.createElement("button");
     buttonR.classList.add("slide__pagination-button", "right");
+    if (index === data.length - 1){
+      buttonR.disabled = true;
+    }
     slidePag.appendChild(buttonR);
 
     const slideAbout = document.createElement("div");
@@ -151,4 +160,71 @@ function createBubles(bubles:BubleInfo[], background:string, translate: number):
 }
 
 
+function nexSlide(slidesInfo:Slide[]):void {
+
+  if (currentSlide !== slidesInfo.length - 1) {
+    currentSlide += 1;
+
+    SlidesCont.style.transform = `translate(${slidesInfo[currentSlide].translate}, 0px)`;
+    body.style.backgroundColor = slidesInfo[currentSlide].color;
+
+    slidesInfo.forEach(elem => {
+      const bubles = elem.bubles;
+
+      bubles.forEach(buble => {
+
+        buble.style.left = `calc(${buble.offsetLeft}px - 100vw - 100%)`;
+      })
+    })
+  }
+
+  
+}
+
+
+function prevSlide(slidesInfo:Slide[]):void {
+  if (currentSlide !== 0) {
+    currentSlide -= 1;
+    
+    
+
+    SlidesCont.style.transform = `translate(${slidesInfo[currentSlide].translate}, 0px)`;
+    body.style.backgroundColor = slidesInfo[currentSlide].color;
+    
+    slidesInfo.forEach(elem => {
+      const bubles = elem.bubles;
+
+      bubles.forEach(buble => {
+
+        buble.style.left = `calc(${buble.offsetLeft}px + 100vw + 100%)`;
+      })
+    })
+  }
+  
+}
+
+document.body.addEventListener("click", (e) => {
+  const target = e.target as Element
+  if(target.classList.contains("left")){
+    prevSlide(slides);
+  }
+  if(target.classList.contains("right")){
+    nexSlide(slides);
+  }
+  
+})
+
+
+
+
+function test(items:Slide[]) {
+  items.forEach(elem => {
+    const bubles = elem.bubles;
+
+    bubles.forEach(buble => {
+
+      buble.style.left = `calc(${buble.offsetLeft}px - 100vw - 100%)`;
+    })
+  })
+}
 

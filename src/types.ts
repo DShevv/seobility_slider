@@ -6,7 +6,8 @@ export class Slide {
   dir: string;
   type: string;
   industry: string;
-  translate: string
+  translate: string;
+  color: string;
 }
 
 export class BubleInfo {

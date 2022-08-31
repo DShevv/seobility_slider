@@ -1,7 +1,11 @@
+import amc from "./assets/mockup-amcodor.png"
+import shop from "./assets/mockup-shop.png"
+
+
 export default [
   {
     color: "#8DBDBA",
-    picture: "./assets/mockup-amcodor.png",
+    picture: amc,
     title: "Создание корпоративного сайта для холдинга «АМКОДОР»",
     subtitle: "Разработать и запустить корпоративный сайт для холдинга “АМКОДОР” для развития дилерской сети на рынках Беларуси и стран СНГ.",
     dir: "WEB-разработка",
@@ -37,7 +41,7 @@ export default [
   },
   {
     color: "#8675BA",
-    picture: "./assets/mockup-shop.png",
+    picture: shop,
     title: "Создание маркетплейса для бизнеса по перепродаже одежды",
     subtitle: "Brands&Charity — благотворительная онлайн — платформа для перепродажи брендовых вещей, цель которой превратить ненужные одним людям вещи в полезный ресурс для других.",
     dir: "WEB-разработка",

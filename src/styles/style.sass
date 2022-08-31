@@ -11,6 +11,7 @@ body
   display: flex
   justify-content: center
   background-color: $light-green
+  transition: all .5s ease
 
 .container
   position: relative
@@ -32,15 +33,15 @@ body
   height: 100%
   display: flex
   overflow: visible
-  column-gap: 100vw
+  column-gap: calc( 100vw + 100px )
+  transition: all .5s ease
 
 .slide
   position: relative
-  min-width: 100%
+  min-width: calc( 100vw - 100px )
   height: 100%
   display: flex
   align-items: flex-end
-  transform: all .5s
 
   .slide-mockup
     position: absolute
@@ -53,12 +54,6 @@ body
     background-position: center
     background-repeat: no-repeat
     z-index: 5
-
-  &[data-color="green"] .slide-mockup
-    background-image: url("../assets/mockup-amcodor.png")
-
-  &[data-color="purple"] .slide-mockup
-    background-image: url("../assets/mockup-shop.png")
 
   &__caption
     width: 668px
@@ -104,6 +99,13 @@ body
 
       &:hover
         background-position: 58% center
+
+      &:disabled
+        opacity: 0.5
+        cursor: default
+
+        &:hover
+          background-position: center
 
     &-button.left
       transform: rotate(180deg)
