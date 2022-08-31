@@ -25,7 +25,7 @@ body
   .title
     @include h1
     margin: 0
-    z-index: 3
+    z-index: 10
 
 .slides
   width: 100%
@@ -40,6 +40,7 @@ body
   height: 100%
   display: flex
   align-items: flex-end
+  transform: all .5s
 
   .slide-mockup
     position: absolute
@@ -139,6 +140,7 @@ body
       backdrop-filter: blur(30px)
       border-radius: 50%
       position: absolute
+      transition: all .5s ease
 
       &[data-color="purple"]
         background: linear-gradient(rgba(165, 185, 255, 0.24) 1.1%, rgba(119, 124, 138, 0) 108.32%), radial-gradient(32.42% 32.42% at 46.83% 18.92%, rgba(255, 255, 255, 0.147) 0%, rgba(62, 75, 119, 0) 100%), linear-gradient(rgba(141, 104, 177, 0.4), rgba(141, 104, 177, 0.4))
