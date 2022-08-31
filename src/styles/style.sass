@@ -1,6 +1,12 @@
 @import ./colors
 @import ./fonts
 
+*
+  margin: 0
+  padding: 0
+  box-sizing: border-box
+  cursor: none
+
 body
   padding: 0
   margin: 0
@@ -102,7 +108,6 @@ body
       border: 1px solid $text
       background-color: transparent
       outline: none
-      cursor: pointer
       transition: all .2s
 
       &:hover
@@ -110,7 +115,6 @@ body
 
       &:disabled
         opacity: 0.5
-        cursor: default
 
         &:hover
           background-position: center
@@ -168,3 +172,22 @@ body
         border-radius: 50%
         background-image: url("../assets/glass.png")
         opacity: 0.02
+
+#cursor
+  position: absolute
+  left: 50%
+  top: 50%
+  transform: translate(-50%)
+  height: 50px
+  width: 50px
+  border: none
+  border-radius: 100%
+  background: rgba(99, 186, 105, 0.7)
+  pointer-events: none
+  user-select: none
+  z-index: 1000
+  transition: width .2s ease, height .2s ease
+
+  &.active
+    width: 100px
+    height: 100px

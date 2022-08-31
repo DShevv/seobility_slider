@@ -16,6 +16,7 @@ module.exports = {
   mode: "development",
   entry: {
     main: ["@babel/polyfill", "./index.ts"],
+    cursor: ["@babel/polyfill/noConflict", "./cursor.ts"],
   },
   output: {
     filename: filename("js"),

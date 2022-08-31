@@ -46,7 +46,7 @@ function createSlides(data:Data[]):HTMLDivElement[] {
     slideElem.appendChild(slidePic);
 
     const slideCaption = document.createElement("div");
-    slideCaption.classList.add("slide__caption");
+    slideCaption.classList.add("slide__caption", "hidden");
     slideElem.appendChild(slideCaption);
 
     const slideTitle = document.createElement("h2");
@@ -170,7 +170,9 @@ function nexSlide(slidesInfo:Slide[]):void {
       elem.querySelector(".slide__caption").classList.add("hidden");
     })
 
-    slidesElements[currentSlide].querySelector(".slide__caption").classList.remove("hidden");
+    setTimeout(() => {
+       slidesElements[currentSlide].querySelector(".slide__caption").classList.remove("hidden");
+    }, 500);
     SlidesCont.style.transform = `translate(${slidesInfo[currentSlide].translate}, 0px)`;
     body.style.backgroundColor = slidesInfo[currentSlide].color;
 
@@ -200,7 +202,9 @@ function prevSlide(slidesInfo:Slide[]):void {
       elem.querySelector(".slide__caption").classList.add("hidden");
     })
 
-    slidesElements[currentSlide].querySelector(".slide__caption").classList.remove("hidden");
+    setTimeout(() => {
+       slidesElements[currentSlide].querySelector(".slide__caption").classList.remove("hidden");
+    }, 500);
     SlidesCont.style.transform = `translate(${slidesInfo[currentSlide].translate}, 0px)`;
     body.style.backgroundColor = slidesInfo[currentSlide].color;
     
@@ -242,3 +246,4 @@ addAttraction(slides[0]);
 
 
 
+ slidesElements[0].querySelector(".slide__caption").classList.remove("hidden");
