@@ -1,6 +1,7 @@
 import { Slide, Data, BubleInfo } from './types';
 import data from './data.ts';
 import './styles/style.sass';
+import { HoverDiv } from './buble-attraction.ts';
 
 
 const body = document.body;
@@ -150,7 +151,7 @@ function createBubles(bubles:BubleInfo[], background:string, translate: number):
     buble.style.width = `${elem.width}px`;
     buble.style.height = `${elem.height}px`;
     buble.style.zIndex = elem.z.toString();
-
+    buble.dataset.zIndex = elem.z.toString();
 
     container.appendChild(buble);
     res.push(buble);
@@ -165,6 +166,11 @@ function nexSlide(slidesInfo:Slide[]):void {
   if (currentSlide !== slidesInfo.length - 1) {
     currentSlide += 1;
 
+    slidesElements.forEach(elem => {
+      elem.querySelector(".slide__caption").classList.add("hidden");
+    })
+
+    slidesElements[currentSlide].querySelector(".slide__caption").classList.remove("hidden");
     SlidesCont.style.transform = `translate(${slidesInfo[currentSlide].translate}, 0px)`;
     body.style.backgroundColor = slidesInfo[currentSlide].color;
 
@@ -175,7 +181,10 @@ function nexSlide(slidesInfo:Slide[]):void {
 
         buble.style.left = `calc(${buble.offsetLeft}px - 100vw - 100%)`;
       })
+      
+
     })
+    addAttraction(slidesInfo[currentSlide]);
   }
 
   
@@ -187,7 +196,11 @@ function prevSlide(slidesInfo:Slide[]):void {
     currentSlide -= 1;
     
     
+    slidesElements.forEach(elem => {
+      elem.querySelector(".slide__caption").classList.add("hidden");
+    })
 
+    slidesElements[currentSlide].querySelector(".slide__caption").classList.remove("hidden");
     SlidesCont.style.transform = `translate(${slidesInfo[currentSlide].translate}, 0px)`;
     body.style.backgroundColor = slidesInfo[currentSlide].color;
     
@@ -198,7 +211,9 @@ function prevSlide(slidesInfo:Slide[]):void {
 
         buble.style.left = `calc(${buble.offsetLeft}px + 100vw + 100%)`;
       })
+      
     })
+    addAttraction(slidesInfo[currentSlide]);
   }
   
 }
@@ -215,16 +230,15 @@ document.body.addEventListener("click", (e) => {
 })
 
 
-
-
-function test(items:Slide[]) {
-  items.forEach(elem => {
-    const bubles = elem.bubles;
-
-    bubles.forEach(buble => {
-
-      buble.style.left = `calc(${buble.offsetLeft}px - 100vw - 100%)`;
-    })
+function addAttraction(slidesInfo:Slide) {
+  setTimeout(() => {
+    slidesInfo.bubles.forEach(elem => { 
+    new HoverDiv(elem, elem.dataset.zIndex);
   })
+  }, 700);
 }
+
+addAttraction(slides[0]);
+
+
 

@@ -49,24 +49,24 @@ export default [
     industry: "Торговля",
     bublesInfo: [
        {
-        top: -12.5,
-        left: 14,
-        width: 282.76,
-        height: 282.76,
+        top: -27.5,
+        left: -19,
+        width: 331.65,
+        height: 331.65,
         z: 0,
       },
       {
-        top: 56,
-        left: 80.6,
-        width: 330.66,
-        height: 330.66,
+        top: -11,
+        left: 45,
+        width: 192.32,
+        height: 192.32,
         z:7
       },
       {
-        top: 60,
-        left: -5,
-        width: 222.85,
-        height: 222.85,
+        top: 50,
+        left: 90,
+        width: 316.24,
+        height: 316.24,
         z:7
       },
     ],
