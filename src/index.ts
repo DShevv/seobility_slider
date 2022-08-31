@@ -66,14 +66,14 @@ function createSlides(data:Data[]):HTMLDivElement[] {
     const buttonL = document.createElement("button");
     buttonL.classList.add("slide__pagination-button", "left");
     if (index === 0){
-      buttonL.disabled = true;
+      buttonL.classList.add("disabled");
     }
     slidePag.appendChild(buttonL);
 
     const buttonR = document.createElement("button");
     buttonR.classList.add("slide__pagination-button", "right");
     if (index === data.length - 1){
-      buttonR.disabled = true;
+      buttonR.classList.add("disabled");
     }
     slidePag.appendChild(buttonR);
 
